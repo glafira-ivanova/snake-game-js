@@ -1,6 +1,6 @@
 #matrix
 {
-	float: left;
+	display: inline-block;
 	width: 400px;
 	height: 400px;
 	border-top: 1px solid #999;
@@ -31,9 +31,15 @@
 
 #manual
 {
+	display: inline-block;
 	margin: 10px;
+	vertical-align: top;
 }
-
+#controls
+{
+	width: 277px;
+	font-size: 10px;
+}
 td 
 {
 	border: 1px solid black;
@@ -47,4 +53,50 @@ th
 	border: 1px solid black;
 	border-collapse: collapse;
 	padding: 5px;
+}
+input
+{
+	outline: none;
+}
+#st
+{
+	text-align: left;
+}
+#main
+{
+	float: left;
+}
+table
+{
+	border-collapse: collapse;
+}
+#scoretable
+{
+	font: 12px;
+}
+#scorediv
+{
+	vertical-align: top;
+	margin: 10px;
+	display: inline-block;
+}
+#scoreheader
+{
+	text-align: center;
+	padding-left: 20px;
+	display: inline-block;
+	text-decoration: underline;
+}
+#info
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.visible
+{
+	visibility: visible;
+}
+.hidden
+{
+	visibility: hidden;
 }
