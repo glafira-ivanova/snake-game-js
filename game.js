@@ -1,3 +1,5 @@
+var name;
+
 function Game()
 {
 	var that = this;
@@ -24,7 +26,6 @@ function Game()
 		'strawberry',
 		'watermelon',
 	]
-
 	this.setHandler = function()
 	{
 		$(window).on('keydown', that.userHandler);
@@ -42,10 +43,10 @@ function Game()
 		$('#score').text(0);
 		$('#speed').text(that.speed);
 		setTimeout(that.setHandler, 500);
+		$("#matrix").removeAttr("style").hide().show('explode', 1000);
 	}
-
 	this.userHandler = function(event) 
-	{		
+	{
 		if (event.which in MOVECODES) 
 		{
         	that.snake.direction = MOVECODES[event.which];
@@ -71,28 +72,26 @@ function Game()
     		}
     	} 
 	}
-
 	this.gameOver = function()
 	{
+		$("#matrix").hide(
+			"pulsate",
+			1000,
+			function()
+			{
+				$("#matrix").show();
+				$("#dialog-form").dialog("open");
+				that.create();
+				showScores();
+			}
+		);
+
 		var curr_score = parseInt($('#score').text());
 		var high_score = parseInt($('#high_score').text());
 		if (curr_score > high_score) 
 		{
 			$('#high_score').text(curr_score);
 		};
-		var name = prompt('Enter your name:', 'player');
-		$.post(
-			"http://snake/add.php", 
-			{
-				'name': name,
-				'score': curr_score
-			},
-			function(data, status)
-			{
-				console.log(data, status)
-			}
-		);
-		that.create();
 	}
 
 	this.run = function()
@@ -114,7 +113,6 @@ function Game()
 			}
 		}
 	}
-
 	this.genFruit = function() 
 	{
 		var row = getRandomInt(1, that.matrix.rows);
@@ -128,7 +126,6 @@ function Game()
 			that.genFruit();
 		}
 	}
-
 	this.speedUp = function () 
 	{
 		if (that.speed < 20) 
@@ -137,7 +134,6 @@ function Game()
 			$('#speed').text(that.speed);
 		}
 	}
-	
 	this.speedDown = function () 
 	{
 		if (that.speed > 1)
@@ -147,5 +143,7 @@ function Game()
 		}
 	}
 }
+
+
 
 
