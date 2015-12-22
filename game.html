@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>GAME</title>
-	<link rel="stylesheet" href="style.css" type="text/css" media="screen" /> 	
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen"/> 	
 	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
 	<script language="javascript" src="matrix.js"></script>
 	<script language="javascript" src="onload.js"></script>
@@ -13,34 +13,44 @@
 <body>
 	<div id="matrix"></div>
 	<div id="manual">
-	<table>
-		<caption>Controls:</caption>
-		<tr>
-			<th>Key</th>
-			<th>Action</th>
-		</tr>
-		<tr>
-			<td>Arrow keys</td>
-			<td>Start/resume game</td>
-		</tr>
-		<tr>
-			<td>Space</td>
-			<td>Pause</td>
-		</tr>
-		<tr>
-			<td>Num plus</td>
-			<td>Speed Up</td>
-		</tr>
-		<tr>
-			<td>Num minus</td>
-			<td>Speed down</td>
-		</tr>
-	</table>
-	</div>
-	<div>
+		<table>
+			<caption>Controls:</caption>
+			<tr>
+				<th>Key</th>
+				<th>Action</th>
+			</tr>
+			<tr>
+				<td>Arrow keys</td>
+				<td>Start/resume game</td>
+			</tr>
+			<tr>
+				<td>Space</td>
+				<td>Pause</td>
+			</tr>
+			<tr>
+				<td>Num plus</td>
+				<td>Speed Up</td>
+			</tr>
+			<tr>
+				<td>Num minus</td>
+				<td>Speed down</td>
+			</tr>
+		</table>
+		<div id="info">
 		<span>Score: </span><span id="score"></span><br>
 		<span>High score: </span><span id="high_score">0</span><br>
 		<span>Speed: </span><span id="speed">0</span><br>
+		</div>
+	<div>
+		<form id="search">
+			<input type="search" list="searchlist" id="searchinput" onkeypress="searchPlayers()"/>
+			<datalist id="searchlist"></datalist>
+			<input type="button" value="Show scores" onclick="showScores()"/>
+		</form>
 	</div>
+	</div>
+	<div id="scorediv">
+		<div id="st"><span id="scoreheader">Top 10 scores:</span><ol id="scoretable"></ol></div>
+	</div>	
 </body>
 </html>

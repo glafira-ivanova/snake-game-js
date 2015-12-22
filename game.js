@@ -24,7 +24,6 @@ function Game()
 		'strawberry',
 		'watermelon',
 	]
-
 	this.setHandler = function()
 	{
 		$(window).on('keydown', that.userHandler);
@@ -43,9 +42,8 @@ function Game()
 		$('#speed').text(that.speed);
 		setTimeout(that.setHandler, 500);
 	}
-
 	this.userHandler = function(event) 
-	{		
+	{
 		if (event.which in MOVECODES) 
 		{
         	that.snake.direction = MOVECODES[event.which];
@@ -71,7 +69,6 @@ function Game()
     		}
     	} 
 	}
-
 	this.gameOver = function()
 	{
 		var curr_score = parseInt($('#score').text());
@@ -86,15 +83,12 @@ function Game()
 			{
 				'name': name,
 				'score': curr_score
-			},
-			function(data, status)
-			{
-				console.log(data, status)
 			}
 		);
 		that.create();
-	}
+		showScores();
 
+	}
 	this.run = function()
 	{
 		if (!that.snake.alive)
@@ -114,7 +108,6 @@ function Game()
 			}
 		}
 	}
-
 	this.genFruit = function() 
 	{
 		var row = getRandomInt(1, that.matrix.rows);
@@ -128,7 +121,6 @@ function Game()
 			that.genFruit();
 		}
 	}
-
 	this.speedUp = function () 
 	{
 		if (that.speed < 20) 
@@ -137,7 +129,6 @@ function Game()
 			$('#speed').text(that.speed);
 		}
 	}
-	
 	this.speedDown = function () 
 	{
 		if (that.speed > 1)
