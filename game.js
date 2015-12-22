@@ -24,6 +24,7 @@ function Game()
 		'strawberry',
 		'watermelon',
 	]
+
 	this.setHandler = function()
 	{
 		$(window).on('keydown', that.userHandler);
@@ -38,8 +39,11 @@ function Game()
 		var startCol = getRandomInt(1, that.matrix.cols);
 		that.snake.create(startRow, startCol, 'right');
 		that.genFruit();
+		$('#score').text(0);
+		$('#speed').text(that.speed);
 		setTimeout(that.setHandler, 500);
 	}
+
 	this.userHandler = function(event) 
 	{		
 		if (event.which in MOVECODES) 
@@ -67,11 +71,30 @@ function Game()
     		}
     	} 
 	}
+
 	this.gameOver = function()
 	{
+		var curr_score = parseInt($('#score').text());
+		var high_score = parseInt($('#high_score').text());
+		if (curr_score > high_score) 
+		{
+			$('#high_score').text(curr_score);
+		};
+		var name = prompt('Enter your name:', 'player');
+		$.post(
+			"http://snake/add.php", 
+			{
+				'name': name,
+				'score': curr_score
+			},
+			function(data, status)
+			{
+				console.log(data, status)
+			}
+		);
 		that.create();
-
 	}
+
 	this.run = function()
 	{
 		if (!that.snake.alive)
@@ -91,6 +114,7 @@ function Game()
 			}
 		}
 	}
+
 	this.genFruit = function() 
 	{
 		var row = getRandomInt(1, that.matrix.rows);
@@ -102,6 +126,24 @@ function Game()
 			$('.fruit').css('background-image', 'url(fruits/' + fruit + '.png)');
 		} else {
 			that.genFruit();
+		}
+	}
+
+	this.speedUp = function () 
+	{
+		if (that.speed < 20) 
+		{
+			that.speed++;
+			$('#speed').text(that.speed);
+		}
+	}
+	
+	this.speedDown = function () 
+	{
+		if (that.speed > 1)
+		{
+			that.speed--;
+			$('#speed').text(that.speed);
 		}
 	}
 }
