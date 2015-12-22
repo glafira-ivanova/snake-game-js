@@ -1,0 +1,50 @@
+#matrix
+{
+	float: left;
+	width: 400px;
+	height: 400px;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+#matrix .cell
+{
+	float: left;
+	width: 19px;
+	height: 19px;	
+	border-bottom: 1px solid #999;
+	border-right: 1px solid #999;	
+}
+
+#matrix .fruit
+{
+	background-image: url(fruits/apple.png);
+	background-size: contain;
+}
+
+#matrix .snake
+{
+	background-color: #95BE22;
+}
+
+#manual
+{
+	margin: 10px;
+}
+
+td 
+{
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+	padding: 5px;
+}
+
+th
+{
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+}
